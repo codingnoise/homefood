@@ -1,0 +1,20 @@
+{% extends "homefood/base.html" %}
+{% block body %}
+<div class="container">
+  <div class="page-header">
+    <h2>Food</h2>
+  </div>
+</div>
+
+{% if all_products %}
+{% load staticfiles %}
+<div class="container" id="display_section">
+      {% for movie in all_products %}
+      {% endfor %}
+</div><!--/container -->
+{% else %}
+<div class="container" id="Nothing_found_section" style="text-align: center;">
+    <h3> No results found! </h3>
+</div><!--/container -->
+{% endif %}
+{% endblock %}

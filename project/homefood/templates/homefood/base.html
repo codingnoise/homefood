@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Food</title>
+    <!-- Static files -->
+    {% load staticfiles %}
+    <!-- First include jquery js -->
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">-->
+    <link href="https://fonts.googleapis.com/css?family=Mr+Dafoe" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'homefood.css' %}">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container-fluid">
+            <!--- logo --->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#homeFoodNavBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'homefood:index' %}">Home Food</a>
+            </div>
+                <!--items--->
+                <div class="collapse navbar-collapse" id="homeFoodNavBar">
+
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="{%url 'homefood:index'%}">
+                                <span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp;
+                                Food
+                            </a>
+                        </li>
+                    </ul>
+
+                    <form class="navbar-form navbar-left" role="search" method="get" action="#">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="q" value="search">
+                        </div>
+                        <button type="submit" class="btn btn-default">Search</button>
+                    </form>
+
+                    <!----buttons on the right---->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="{% url 'homefood:add-user' %}">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;
+                                Add Contest
+                            </a>
+                        </li>
+
+
+                        <li class="">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;
+                                Logout
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+    </nav>
+    {% block body %}
+    {% endblock %}
+</body>
+</html>
