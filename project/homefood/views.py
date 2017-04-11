@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
-from .models import FoodProduct, User, AddUserForm
+from .models import Food, User, AddUserForm, AddFoodProductForm, Location, AddLocation
 
 
 PAGE_TEMPLATE = "%s:%s"
@@ -14,7 +14,7 @@ class IndexView(ListView):
     context_object_name = "all_products"
 
     def get_queryset(self):
-        return FoodProduct.objects.all()
+        return Food.objects.all()
 
 
 ############## User ##############
@@ -33,4 +33,18 @@ class UpdateUserView(UpdateView):
 
 class DeleteUserView(DeleteView):
     model = User
+    success_url = reverse_lazy(INDEX_URL)
+
+
+############## Food ##############
+
+class AddFood(CreateView):
+    model = Food
+    form_class = AddFoodProductForm
+    success_url = reverse_lazy(INDEX_URL)
+
+
+class AddLocation(CreateView):
+    model = Location
+    form_class = AddLocation
     success_url = reverse_lazy(INDEX_URL)

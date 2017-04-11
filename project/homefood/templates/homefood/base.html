@@ -47,10 +47,17 @@
 
                     <!----buttons on the right---->
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="">
+                        <li class="add-user-button">
                             <a href="{% url 'homefood:add-user' %}">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;
-                                Add Contest
+                                Add User
+                            </a>
+                        </li>
+
+                        <li class="add-food-button">
+                            <a href="{% url 'homefood:add-food' %}">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;
+                                Add Food
                             </a>
                         </li>
 
