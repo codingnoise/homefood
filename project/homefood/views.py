@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
@@ -10,12 +11,39 @@ INDEX_URL = PAGE_TEMPLATE % ("homefood", "index")
 
 
 class IndexView(ListView):
-    template_name = "homefood/index.html"
-    context_object_name = "all_products"
+    template_name = "homefood/interview.html"
+    #context_object_name = "all_products"
 
     def get_queryset(self):
-        return Food.objects.all()
+        return ""
 
+class AboutView(ListView):
+    template_name = "homefood/about.html"
+    #context_object_name = "all_products"
+
+    def get_queryset(self):
+        return ""
+
+class SyllabusView(ListView):
+    template_name = "homefood/syllabus.html"
+    #context_object_name = "all_products"
+
+    def get_queryset(self):
+        return ""
+
+class EnrollView(ListView):
+    template_name = "homefood/enroll.html"
+    #context_object_name = "all_products"
+
+    def get_queryset(self):
+        return ""
+
+class CoursesView(ListView):
+    template_name = "homefood/courses.html"
+    #context_object_name = "all_products"
+
+    def get_queryset(self):
+        return ""
 
 ############## User ##############
 
