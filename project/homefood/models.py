@@ -1,12 +1,12 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.forms import ModelForm
+from django import forms
+from django.forms import Form, ModelForm
 
 import uuid
 
-DATE_TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
-
+from constants import Constants
 
 class Location(models.Model):
     latlong = models.CharField(max_length=200, primary_key=True)
@@ -41,15 +41,22 @@ class Food(models.Model):
 
 class Order(models.Model):
     order_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    order_date_time = models.DateTimeField(format(DATE_TIME_FORMAT))
+    order_date_time = models.DateTimeField(format(Constants.DATE_TIME_FORMAT))
     order_total = models.DecimalField(max_digits=8, decimal_places=2)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-
 
 class Payment(models.Model):
     payment_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
 
+# class Schedule(models.Model):
+#     interview_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+#     interviewDate = models.DateTimeField(Constants.DATE_FORMAT)
+#     interviewTime = models.DateTimeField(Constants.TIME_FORMAT)
+#     email = models.EmailField()
+
+
+########### forms #############
 class AddUserForm(ModelForm):
     class Meta:
         model = User
@@ -66,3 +73,9 @@ class AddLocation(ModelForm):
     class Meta:
         model = Location
         fields = ["latlong", "latitude", "longitude", "street", "city", "state", "country"]
+
+
+class SchedulerForm(Form):
+    scheduleDate = forms.CharField()
+    scheduleTime = forms.CharField()
+    email = forms.EmailField()

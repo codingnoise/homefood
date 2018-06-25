@@ -1,4 +1,17 @@
 {% extends "homefood/interview_base.html" %}
+{% block title %}
+    <title>Valley Coaching - Online Coaching for professionals - Syllabus </title>
+{% endblock %}
+{% block navbar %}
+              <nav>
+                <ul class="nav masthead-nav">
+                    <li><a href="{% url 'homefood:index' %}">Home</a></li>
+                    <li class="active"><a href="{% url 'homefood:syllabus' %}">Syllabus</a></li>
+                    <li><a href="{% url 'homefood:about' %}">About</a></li>
+                </ul>
+              </nav>
+{% endblock %}
+
 {% block body %}
           <div class="inner cover1" style="overflow:scroll;">
                   <h1 class="cover-heading">Syllabus</h1>
@@ -16,10 +29,11 @@
                             <td scope="row">
                                   <button type="button" class="btn btn-link"  data-toggle="collapse" data-target="#demo1">Introduction to the course [+]</button>
                                   <div id="demo1" class="collapse">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                  </div>
+                                      </br>
+                                      <p><b>Introduction to Java and Coding</p>
+                                      <p>Basics of Algorithms and Data Structures</p>
+                                      <p>Order Complexity</b></p>
+                                </div>
                             </td>
 
 
@@ -29,9 +43,10 @@
                             <td scope="row">
                                   <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#demo2">Arrays [+]</button>
                                   <div id="demo2" class="collapse">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                      </br>
+                                      <p><b>Basics of Arrays</b></p>
+                                      <p><b>Sorting & Searching</b></p>
+                                      <p><b>Array Interview Problems & Test</b></p>
                                   </div>
                           </td>
                         </tr>
@@ -41,9 +56,11 @@
                             <td scope="row">
                                   <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#demo3">Linked Lists [+]</button>
                                   <div id="demo3" class="collapse">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                      </br>
+                                      <p><b>Basics of LinkedLists</b></p>
+                                      <p><b>LinkedList Interview Problems</b></p>
+                                      <p><b>Advanced LinkedList Problems & Test</b></p>
+
                                   </div>
                           </td>
                         </tr>
@@ -53,9 +70,10 @@
                             <td scope="row">
                                   <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#demo4">Trees [+]</button>
                                   <div id="demo4" class="collapse">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                      </br>
+                                     <p><b>Introduction to Trees</b> - Traversals, Binary Trees, Binary Search Trees </p>
+                                      <p><b>Tree Interview Problems</b></p>
+                                     <p> <b>Advanced Tree Problems & Test</b></p>
                                   </div>
                           </td>
                         </tr>
@@ -65,9 +83,10 @@
                             <td scope="row">
                                   <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#demo5"> Graphs [+]</button>
                                   <div id="demo5" class="collapse">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                      </br>
+                                      <p><b>Introduction to Graphs</b> - BFS, DFS, Shortest Path </p>
+                                      <p><b>Graph Interview Problems</b></p>
+                                      <p><b>Avandced Graph Problems & Test</b></p>
                                   </div>
                           </td>
                         </tr>
@@ -76,9 +95,11 @@
                           <td scope="row">
                                   <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#demo6">Dynamic Programming [+]</button>
                                   <div id="demo6" class="collapse">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                      </br>
+                                      <p><b>Introduction to Dynamic Programming</b></p>
+                                      <p><b>Identifiction of Dynamic Programming Problems</b></p>
+                                      <p><b>Dynamic Programming Interview Problems & Test</b></p>
+
                                   </div>
                           </td>
                         </tr>
@@ -87,9 +108,10 @@
                             <td scope="row">
                                   <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#demo7">Mocks & Design [+]</button>
                                   <div id="demo7" class="collapse">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                      </br>
+                                      <p><b>System Design</b></p>
+                                      <p><b>Design Interview Questions</b></p>
+                                      <p><b>Mock Interviews</b></p>
                                   </div>
                           </td>
                         </tr>
@@ -98,9 +120,8 @@
                             <td scope="row">
                                   <a class="btn btn-link" data-toggle="collapse" data-target="#demo8" class="btn btn-lg btn-default-blue">Mocks & Design [+]</a>
                                   <div id="demo8" class="collapse">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                      </br>
+                                      <p><b>Mock Interviews</b></p>
                                   </div>
 
                           </td>

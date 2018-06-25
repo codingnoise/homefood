@@ -1,0 +1,82 @@
+{% extends "homefood/interview_base.html" %}
+{% block title %}
+    <title>Valley Coaching - Online Coaching for professionals - About</title>
+{% endblock %}
+{% block navbar %}
+              <nav>
+                <ul class="nav masthead-nav">
+                    <li><a href="{% url 'homefood:index' %}">Home</a></li>
+                    <li><a href="{% url 'homefood:syllabus' %}">Syllabus</a></li>
+                    <li  class="active"><a href="{% url 'homefood:about' %}">About</a></li>
+                </ul>
+              </nav>
+{% endblock %}
+
+{% block body %}
+
+            <div>
+                <p class="lead">
+                    You can schedule a mock interview in just three steps.
+                </p>
+            </div>
+            <form id="scheduler" action="{% url 'homefood:schedule' %}" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h4 class="cover-heading">1. Select a date</h4>
+                        <input id="scheduleDate" name="scheduleDate" type="hidden"/>
+                        <div id="calendar">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <h4 class="cover-heading">2. Choose an available slot</h4>
+                        <input id="scheduleTime" name="scheduleTime" type="hidden"/>
+                        <div id="availability">
+                            <h5 class=\"lead\">Sorry there are no available slots for the date selected :( </h5>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <h4 class="cover-heading">3. Provide an email</h4>
+                          <div class="form-group">
+                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email"/>
+                          </div>
+                    </div>
+                </div>
+                <div>
+                    <p class="lead">
+                        <a class="btn btn-lg btn-default" type="submit" id="scheduleMockInterview"> Schedule Mock Interview</a>
+                    </p>
+                </div>
+            </form>
+			<!--<div class="about-inner-section">-->
+
+				<!--&lt;!&ndash;<div class="col-md-6 about-inner-column">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<h3 class="sub-heading">Who?</h3>&ndash;&gt;-->
+					<!--&lt;!&ndash;<p class="paragraph-text">&ndash;&gt;-->
+                            <!--&lt;!&ndash;We are a small group of people with big idea of taking career coaching online.&ndash;&gt;-->
+                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<h3 class="sub-heading">What?</h3>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<p class="paragraph-text">&ndash;&gt;-->
+                        <!--&lt;!&ndash;We create virtual classrooms with experienced industry professionals to coach&ndash;&gt;-->
+                        <!--&lt;!&ndash;everyone aspiring to move to the next level in their career.&ndash;&gt;-->
+                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<h3 class="sub-heading">How?</h3>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<p class="paragraph-text">&ndash;&gt;-->
+                        <!--&lt;!&ndash;Depending on the class, it would be Google Hangouts, Skype or WebEx.&ndash;&gt;-->
+                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<h3 class="sub-heading">Where?</h3>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<p class="paragraph-text">&ndash;&gt;-->
+                        <!--&lt;!&ndash;It's all online. So, half-full-half-empty way of saying it would be anywhere in general but nowhere in particular.&ndash;&gt;-->
+                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
+
+				<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+				<!--&lt;!&ndash;<div class="clearfix"> </div>&ndash;&gt;-->
+			<!--</div>-->
+		<!--</div>-->
+	<!--</div>-->
+          <!--</div>-->
+{% endblock %}

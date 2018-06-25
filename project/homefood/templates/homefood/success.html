@@ -5,7 +5,7 @@
 {% block navbar %}
               <nav>
                 <ul class="nav masthead-nav">
-                    <li class="active"><a href="{% url 'homefood:index' %}">Home</a></li>
+                    <li><a href="{% url 'homefood:index' %}">Home</a></li>
                     <li><a href="{% url 'homefood:syllabus' %}">Syllabus</a></li>
                     <li><a href="{% url 'homefood:about' %}">About</a></li>
                 </ul>
@@ -13,10 +13,10 @@
 {% endblock %}
 {% block body %}
           <div class="inner cover">
-            <h1 class="cover-heading">Interview Coach</h1>
-            <p class="lead">At Interview Coach, you can take virtual classes with the professionals of Silicon Valley to ace tech coding interviews.</p>
+            <h1 class="cover-heading" style="color:#86c232;">Success!</h1>
+            <p class="lead">You've successfully scheduled a mock interview! Please check your email for details</p>
             <p class="lead">
-              <a href="{% url 'homefood:courses' %}" class="btn btn-lg btn-default">Enroll now</a>
+                Return to <a href="{% url 'homefood:contact' %}" style="color:#86c232;">scheduling mocks</a>
             </p>
           </div>
 {% endblock %}
