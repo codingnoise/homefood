@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, View
 
 
-from .models import Food, User, AddUserForm, AddFoodProductForm, Location, AddLocation, SchedulerForm
+from .models import SchedulerForm
 
 from messages.messages import ScheduleMessage
 from manager import SchedulerManager, TaskManager
@@ -48,8 +48,8 @@ class CoursesView(ListView):
     def get_queryset(self):
         return ""
 
-class ContactView(ListView):
-    template_name = "homefood/contact.html"
+class ScheduleView(ListView):
+    template_name = "homefood/schedule.html"
     context_object_name = "availabilities"
 
     def get_queryset(self):
@@ -72,7 +72,7 @@ class SuccessView(ListView):
     def get_queryset(self):
         return ""
 
-class SchedulerView(View):
+class AppointmentView(View):
     success_template_name = "homefood/success.html"
 
     def post(self, request):
@@ -99,32 +99,8 @@ class SchedulerView(View):
 
 ############## User ##############
 
-class AddUser(CreateView):
-    model = User
-    form_class = AddUserForm
-    success_url = reverse_lazy(INDEX_URL)
+# class AddUser(CreateView):
+#     model = User
+#     form_class = AddUserForm
+#     success_url = reverse_lazy(INDEX_URL)
 
-
-class UpdateUserView(UpdateView):
-    model = User
-    form_class = AddUserForm
-    success_url = reverse_lazy(INDEX_URL)
-
-
-class DeleteUserView(DeleteView):
-    model = User
-    success_url = reverse_lazy(INDEX_URL)
-
-
-############## Food ##############
-
-class AddFood(CreateView):
-    model = Food
-    form_class = AddFoodProductForm
-    success_url = reverse_lazy(INDEX_URL)
-
-
-class AddLocation(CreateView):
-    model = Location
-    form_class = AddLocation
-    success_url = reverse_lazy(INDEX_URL)

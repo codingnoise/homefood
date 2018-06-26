@@ -1,3 +1,4 @@
+import ast
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
@@ -9,9 +10,55 @@ import time
 from constants import Constants
 from messages.messages import ScheduleMessage
 
-class Appointments:
+"""
+appointments cache will be of type:
+{"YYYY/MM/DD" : ["8:00pm",...]}
+"""
+class AppointmentsDao:
     appointments = {}
 
+    @staticmethod
+    def write_appointments_cache(self, filepath):
+        with open(filepath, "w") as f:
+            f.write(str(self.appointments))
+
+    @staticmethod
+    def get_appointments_cache(self):
+        return self.appointments
+
+    @staticmethod
+    def delete_previous_in_the_past(self, curr=datetime.today()):
+        if not self.appointments:
+            return
+        for appointment_date in self.appointments:
+            if datetime.strptime(appointment_date, Constants.DATE_FORMAT) < curr:
+                self.appointments.pop(appointment_date)
+
+    #TODO: Complete
+    @staticmethod
+    def save_appointment(self, date, time, email, save_to_db=True):
+        # Add to cache
+        if date in self.appointments:
+            self.appointments[date].append(time)
+        else:
+            self.appointments[date] = [time]
+
+        # save to db
+        if save_to_db:
+            pass
+
+    #TODO: Complete
+    @staticmethod
+    def load_appointments_cache(self, file_path=None):
+        if not file_path:
+            # load from db
+            pass
+        else:
+            with open(file_path, "r") as f:
+                cache = f.read()
+                if not cache:
+                    return
+                self.appointments = ast.literal_eval(cache)
 
 class SchedulerManager:
 
@@ -36,8 +83,9 @@ class SchedulerManager:
         if dt < datetime.now() or dt == datetime.today():
             return []
         times = self._weekend_times if dt.weekday() == 4 or dt.weekday() == 5 else self._weekday_times
-        if date in Appointments.appointments:
-            return list(set(times) - set(Appointments.appointments[date]))
+        appointments_cache = AppointmentsDao.get_appointments_cache()
+        if date in appointments_cache:
+            return list(set(times) - set(appointments_cache))
         return times
 
     # assuming date is in "YYYY-MM-DD" format and time is in "8:00pm" format
@@ -46,15 +94,17 @@ class SchedulerManager:
     # on success - returns true, else false
     # @asyncio.coroutine
     def schedule_appointment(self, date, time, email):
-        print "Begin Appointments = " + str(Appointments.appointments)
+        appointments_cache = AppointmentsDao.get_appointments_cache()
+        print "Begin Appointments = " + str(appointments_cache)
         if not date or not time:
             print "not date or time"
             return False
 
-        if date in Appointments.appointments:
-            Appointments.appointments[date].append(time)
-        else:
-            Appointments.appointments[date] = [time]
+        AppointmentsDao.save_appointment(date, time, email)
+        # if date in AppointmentsCache.appointments:
+        #     AppointmentsCache.appointments[date].append(time)
+        # else:
+        #     AppointmentsCache.appointments[date] = [time]
 
         print "Preparing to send email..."
         self._mail_manager.sendMail([email])
@@ -73,7 +123,7 @@ class MailManager:
 
     def __init__(self):
         self._gmail_user = "valleycoachingonline@gmail.com"
-        self._gmail_password = r"Jtlc2012."
+        self._gmail_password = r"xxx"
         self._server = None
 
     def start_server(self):
