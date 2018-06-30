@@ -83,4 +83,5 @@ class Appointments(models.Model):
 class SchedulerForm(Form):
     scheduleDate = forms.CharField()
     scheduleTime = forms.CharField()
+    scheduleTopic = forms.CharField()
     email = forms.EmailField()

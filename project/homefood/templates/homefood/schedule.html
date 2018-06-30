@@ -6,7 +6,6 @@
               <nav>
                 <ul class="nav masthead-nav">
                     <li><a href="{% url 'homefood:index' %}">Home</a></li>
-                    <li><a href="{% url 'homefood:syllabus' %}">Syllabus</a></li>
                     <li  class="active"><a href="{% url 'homefood:about' %}">About</a></li>
                 </ul>
               </nav>
@@ -15,34 +14,57 @@
 {% block body %}
 
             <div>
-                <p class="lead">
-                    You can schedule a mock interview in just three steps.
+                <p>
+                    <h3 class="lead">
+                        You can schedule a mock interview in just four steps.
+                    </h3>
                 </p>
             </div>
-            <form id="scheduler" action="{% url 'homefood:schedule' %}" method="post">
+            <form id="scheduler" action="{% url 'homefood:appointment' %}" method="post">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-sm-4">
-                        <h4 class="cover-heading">1. Select a date</h4>
+                        <h4 class="lead">1. Select a date</h4>
                         <input id="scheduleDate" name="scheduleDate" type="hidden"/>
                         <div id="calendar">
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <h4 class="cover-heading">2. Choose an available slot</h4>
+                        <h4 class="lead">2. Choose an available slot</h4>
                         <input id="scheduleTime" name="scheduleTime" type="hidden"/>
                         <div id="availability">
-                            <h5 class=\"lead\">Sorry there are no available slots for the date selected :( </h5>
+                            <h4 class="lead grey-text" id="unavailableText">Sorry there are no available slots for the date selected </h4>
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <h4 class="cover-heading">3. Provide an email</h4>
-                          <div class="form-group">
-                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email"/>
-                          </div>
+                        <!--<h4 class="cover-heading">3. Provide an email</h4>-->
+                          <!--<div class="form-group">-->
+                            <!--<input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email"/>-->
+                          <!--</div>-->
+                        <h4 class="lead">3. Select interview topic</h4>
+                        <select class="form-control-custom form-control-sm" id="scheduleTopicId" name="scheduleTopic">
+                            <option value="java">Java</option>
+                            <option value="python">Python</option>
+                            <option value="algorithms">Algorithms</option>
+                            <option value="datastructures">Datastructures</option>
+                            <option value="design">Design</option>
+                            <option value="testing">Testing</option>
+                        </select>
                     </div>
                 </div>
-                <div>
+                <div class="row">
+                    <div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-4">
+                    <h4 class="lead">4. Provide an email</h4>
+                        <div class="email form-group">
+                            <input type="email" class="form-control-custom" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                    </div>
+                </div>
+                <div class="row">
                     <p class="lead">
                         <a class="btn btn-lg btn-default" type="submit" id="scheduleMockInterview"> Schedule Mock Interview</a>
                     </p>

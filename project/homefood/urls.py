@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, handler404, handler500
 from . import views
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -15,6 +15,10 @@ urlpatterns = [
     url(r'^ajax/availability/$', views.get_availability, name='get_availability'),
     url(r'^appointment/$', views.AppointmentView.as_view(), name="appointment"),
     url(r'^success/$', views.SuccessView.as_view(), name='success'),
+    url(r'^error/$', views.ErrorView.as_view(), name='success')
 ]
 
 urlpatterns += staticfiles_urlpatterns()
+#
+# handler404 = views.handler404
+# handler500 = views.handler500

@@ -102,17 +102,17 @@ function validateEmail(id)
     var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
     if(!email_regex.test($("#"+id).val())) {
         var div = $("#"+id).closest("div");
-        div.removeClass("has-success");
+        $(".email").removeClass("has-success");
         $("#glypcn"+id).remove();
-        div.addClass("has-error has-feedback");
+        $(".email").addClass("has-error has-feedback");
         div.append('<span id="glypcn'+id+'" class="glyphicon glyphicon-remove form-control-feedback"></span>');
         return false;
         }
      else {
         var div = $("#"+id).closest("div");
-        div.removeClass("has-error");
+        $(".email").removeClass("has-error");
         $("#glypcn"+id).remove();
-        div.addClass("has-success has-feedback");
+        $(".email").addClass("has-success has-feedback");
         div.append('<span id="glypcn'+id+'" class="glyphicon glyphicon-ok form-control-feedback"></span>');
         return true;
     }
@@ -122,7 +122,7 @@ function validateEmail(id)
 
 $(document).ready(function() {
     $("#scheduleMockInterview").click(function() {
-        if (!validateText("email")) {
+        if (!validateEmail("email")) {
             return false;
         }
         /*
@@ -245,6 +245,7 @@ function validateEmail(id)
     if(!email_regex.test($("#"+id).val())) {
         $(".feedback").remove();
         $("<p class='feedback' style='color:#CC3300;'>Invalid email</p>").insertAfter( "#"+id );
+        $(".email").addClass("has-feedback has-error")
         return false;
         }
      else {
@@ -283,7 +284,7 @@ $(document).ready(function() {
                 var availability_length = availability.length
                 $("#availability").empty();
                 if (availability_length == 0) {
-                    $("#availability").append("<h4 class=\"lead\"> Sorry there are no available slots for the date selected :( </h4>");
+                    $("#availability").append("<h4 class=\"lead\"> Sorry there are no available slots for the date selected </h4>");
                 } else {
                     $("#availability");
                     for (var i = 0; i < availability_length; i++) {
@@ -298,7 +299,9 @@ $(document).ready(function() {
             },
                     // handle a non-successful response
             error : function(xhr, errmsg, err) {
-                alert("failure" + ": " + xhr.status + ": " + xhr.responseText);
+                //alert("failure" + ": " + xhr.status + ": " + xhr.responseText);
+                $("#availability").empty();
+                $("#availability").append('<h4 class="lead grey-text" id="unavailableText">Sorry there are no available slots for the date selected </h4>');
             }
         });
 

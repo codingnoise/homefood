@@ -5,17 +5,18 @@
 {% block navbar %}
               <nav>
                 <ul class="nav masthead-nav">
-                    <li class="active"><a href="{% url 'homefood:index' %}">Home</a></li>
+                    <li><a href="{% url 'homefood:index' %}">Home</a></li>
+                    <li><a href="{% url 'homefood:syllabus' %}">Syllabus</a></li>
                     <li><a href="{% url 'homefood:about' %}">About</a></li>
                 </ul>
               </nav>
 {% endblock %}
 {% block body %}
           <div class="inner cover">
-            <h1 class="cover-heading">Interview Coach</h1>
-            <p class="lead">You can schedule a mock interview, be interviewed by an industry professional and receive feedback.</p>
+            <h1 class="cover-heading" style="color:#e50000;">Uh oh! Something went wrong!</h1>
+            <p class="lead">Sorry about that! Please try your request again.</p>
             <p class="lead">
-              <a href="{% url 'homefood:schedule' %}" class="btn btn-lg btn-default">Schedule a Mock</a>
+                Return to <a href="{% url 'homefood:schedule' %}" style="color:#86c232;">scheduling mocks</a>
             </p>
           </div>
 {% endblock %}
