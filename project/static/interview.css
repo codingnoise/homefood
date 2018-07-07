@@ -91,7 +91,6 @@ a:hover {
 }
 
 
-
 /*Button for interview topics*/
 .btn-topic {
     color: white;
@@ -149,6 +148,10 @@ body {
 .site-wrapper-inner {
   display: table-cell;
   vertical-align: top;
+}
+
+.tall-container {
+    height: 50%;
 }
 .cover-container {
   margin-right: auto;
@@ -212,6 +215,24 @@ body {
 /*
  * Header
  */
+
+
+ .navbar {
+    background: #222;
+ }
+
+.navbar .navbar-toggle .icon-bar {
+    background-color: #a8a8a8;
+}
+
+.navbar-nav > li > a:hover,
+.navbar-nav > li > a:focus {
+  color: #86c232;
+  background-color: transparent;
+  border-bottom-color: #a9a9a9;
+  border-bottom-color: rgba(255,255,255,.25);
+}
+
 .masthead-brand {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -253,6 +274,9 @@ body {
     float: right;
   }
 }
+
+
+
 
 .sub-heading {
     color: #86c232;
@@ -771,3 +795,55 @@ Calendar
 }
 
 .ui-datepicker-other-month .ui-state-default { color: #565656; }
+
+
+
+
+
+/****
+USERS
+****/
+
+
+.signupFormDiv {
+    padding-top: 10%;
+    padding-right: 7%;
+    padding-bottom: 4%;
+    padding-left: 7%;
+    border: 1px solid #ccc;
+    height: 100%;
+    background-color: #222;
+}
+
+.signupFormDivFooter {
+    padding-top: 2%;
+    color: #a8a8a8;
+}
+
+
+.linkedin-color, .linkedin-color:hover {
+    color: #0177b9;
+}
+.google-color, .google-color:hover {
+    color: #dd4b39;
+}
+.github-color, .github-color:hover {
+    color: #333;
+}
+.facebook-color, .facebook-color:hover {
+    color: #4267b2;
+}
+
+.fa-stack {
+    position: relative;
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    line-height: 2em;
+    vertical-align: middle;
+}
+.fa-lg {
+    font-size: 1.33333333em;
+    line-height: .75em;
+    vertical-align: -15%;
+}

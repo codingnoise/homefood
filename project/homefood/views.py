@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.http import JsonResponse, Http404
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, View
-
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import SchedulerForm
 
@@ -48,12 +50,17 @@ class CoursesView(ListView):
     def get_queryset(self):
         return ""
 
-class ScheduleView(ListView):
+@method_decorator(login_required, name="dispatch")
+class ScheduleView(LoginRequiredMixin, ListView):
     template_name = "homefood/schedule.html"
     context_object_name = "availabilities"
 
     def get_queryset(self):
         return ""
+
+    @method_decorator(login_required(login_url="users/register.html"))
+    def dispatch(self, *args, **kwargs):
+        return super(ScheduleView, self).dispatch(*args, **kwargs)
 
 def get_availability(request):
     date = request.GET.get("date", None)

@@ -37,8 +37,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'homefood.apps.HomefoodConfig'
+    'homefood.apps.HomefoodConfig',
+    'users.apps.UsersConfig'
 ]
+
+############### AUTH ###############
+
+AUTH_USER_MODEL = "users.CustomUser"
+AUTHENTICATION_BACKENDS = [
+    "users.user_backend.CustomUserAuth",
+]
+LOGIN_URL = '/users/register.html'
+
+####################################
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

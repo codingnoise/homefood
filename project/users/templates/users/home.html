@@ -1,0 +1,21 @@
+{% extends "users/base.html" %}
+{% block title %}
+    <title>Valley Coaching - Online Coaching for professionals - Home</title>
+{% endblock %}
+{% block navbar %}
+              <nav>
+                <ul class="nav masthead-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="">About</a></li>
+                </ul>
+              </nav>
+{% endblock %}
+{% block body %}
+    <div class="row">
+        {% if user.is_authenticated %}
+            <h3> You're signed in {{user.name}}!</h3>
+        {% else %}
+            <p>Welcome, new user. Please log in. {{ user.is_authenticated }}</p>
+        {% endif %}
+    </div>
+{% endblock %}

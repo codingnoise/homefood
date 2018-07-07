@@ -47,19 +47,19 @@
 
 
 /* When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar */
-   $(window).scroll(function() {
-
-    if ($(this).scrollTop()>0)
-     {
-        $('.nav').fadeOut();
-        $('.masthead-brand').fadeOut();
-     }
-    else
-     {
-      $('.nav').fadeIn();
-      $('.masthead-brand').fadeIn();
-     }
- });
+//   $(window).scroll(function() {
+//
+//    if ($(this).scrollTop()>0)
+//     {
+//        $('.nav').fadeOut();
+//        $('.masthead-brand').fadeOut();
+//     }
+//    else
+//     {
+//      $('.nav').fadeIn();
+//      $('.masthead-brand').fadeIn();
+//     }
+// });
 
 
 /**
@@ -190,19 +190,19 @@ $(document).ready(function() {
 
 
 /* When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar */
-   $(window).scroll(function() {
-
-    if ($(this).scrollTop()>0)
-     {
-        $('.nav').fadeOut();
-        $('.masthead-brand').fadeOut();
-     }
-    else
-     {
-      $('.nav').fadeIn();
-      $('.masthead-brand').fadeIn();
-     }
- });
+//   $(window).scroll(function() {
+//
+//    if ($(this).scrollTop()>0)
+//     {
+//        $('.nav').fadeOut();
+//        $('.masthead-brand').fadeOut();
+//     }
+//    else
+//     {
+//      $('.nav').fadeIn();
+//      $('.masthead-brand').fadeIn();
+//     }
+// });
 
 
 /**
@@ -256,6 +256,15 @@ function validateEmail(id)
 }
 
 $("form#scheduler").submit(function (e) {
+   var validationFailed = false;
+   // do your validation here ...
+   if (!validateEmail("email")) {
+      e.preventDefault();
+      return false;
+   }
+});
+
+$("form#signupForm").submit(function (e) {
    var validationFailed = false;
    // do your validation here ...
    if (!validateEmail("email")) {
@@ -325,3 +334,13 @@ $("#availability").on("click", "button[id^='timeButton']", function(){
 //        alert("Hello");
 //    });
 //});
+
+
+
+
+
+/*********
+    USERS
+*********/
+
+

@@ -1,0 +1,58 @@
+{% extends "users/base.html" %}
+{% block title %}
+    <title>Valley Coaching - Online Coaching for professionals - Home</title>
+{% endblock %}
+{% block navbar %}
+            <form class="signinForm" action="{% url 'users:login' %}" method="post">
+                {% csrf_token %}
+                  <nav>
+                      <ul class="nav masthead-nav">
+                          <li>
+                              <div class="form-group">
+                                  <input type="text" class="form-control-custom" name="email" placeholder="username">
+                              </div>
+                          </li>
+                          <li>
+                              <div class="form-group">
+                                  <input type="password" class="form-control-custom" name="password" placeholder="password">
+                              </div>
+                          </li>
+                          <li>
+                            <button type="submit" class="btn btn-default">Log In</button>
+                          </li>
+                      </ul>
+                  </nav>
+            </form>
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-sm-4">
+        </div>
+            <div class="col-sm-4">
+                <div class="card signupFormDiv">
+                    <form class="signupForm" action="{% url 'users:register' %}" method="post">
+                        {% csrf_token %}
+                        <div class="name form-group">
+                            <input type="text" class="form-control-custom" id="name" name="name" placeholder="Name"/>
+                        </div>
+                        <div class="email form-group">
+                            <input type="email" class="form-control-custom" id="email" name="email" aria-describedby="emailHelp" placeholder="Email"/>
+                        </div>
+                        <div class="password form-group">
+                            <input type="password" class="form-control-custom" id="password1" name="password1" placeholder="Password"/>
+                        </div>
+                        <button type="submit" class="btn btn-lg btn-default" id="singupUser">Sign Up</button>
+                    </form>
+                    <div class="signupFormDivFooter">
+                        <p>You can also sign in with </p>
+                        <a id="facebook-connect" href="/accounts/facebook/login/" class="fa-stack fa-lg facebook-color social-login-btn"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x fa-inverse"></i></a>
+                        <a id="linkedin-connect" href="/accounts/linkedin/login/" class="fa-stack fa-lg linkedin-color social-login-btn"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-linkedin fa-stack-1x fa-inverse"></i></a>
+                        <a id="google-connect" href="/accounts/google/login/" class="fa-stack fa-lg google-color social-login-btn"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-google fa-stack-1x fa-inverse"></i></a>
+                        <a id="github-connect" href="/accounts/github/login/" class="fa-stack fa-lg github-color social-login-btn"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></a>
+                    </div>
+                </div>
+            </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+{% endblock %}
