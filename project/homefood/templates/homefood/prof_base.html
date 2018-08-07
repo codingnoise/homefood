@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% load staticfiles %}
+      {% block title %}
+      {% endblock %}
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="{% static 'interview.css' %}">
+
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+  </head>
+
+ <body>
+ <div class="profile-site-wrapper">
+     <div class="navbar-div container">
+        {% block navbar %}
+        {% endblock %}
+     </div>
+
+
+    <div class="container-fluid profile-content-area-div">
+       <div class="row">
+          <div class="col-sm-3 hidden-xs profile-sidebar">
+              <div class="profile-sidebar-part">
+                  <div class="profile-card-view">
+                      <div class="profile-card-header">
+                          <h3> <img src="{% static 'stats_icon.png' %}" alt="stats"/> Stats </h3>
+                      </div>
+                      <div class="profile-card-content">
+                          <ul class="module stats-module">
+                              <li>
+                                  <div class="bullet-header">
+                                      <h4>
+                                          <span class="value" title="balance"> 0 </span>
+                                          <a class="" href=""> Krutr Score </a>
+                                      </h4>
+                                  </div>
+                              </li>
+                              <li>
+                                  <div class="bullet-header">
+                                      <h4>
+                                          <span class="value" title="balance"> 0 </span>
+                                          <a class="" href=""> Total Mocks </a>
+                                      </h4>
+                                  </div>
+                              </li>
+                              <li>
+                                  <div class="bullet-header">
+                                      <h4>
+                                          <span class="value" title="balance"> 0 </span>
+                                          <a class="" href=""> Badges </a>
+                                      </h4>
+                                  </div>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+              <div class="profile-sidebar-part">
+                  <div class="profile-card-view">
+                      <div class="profile-card-header">
+                          <h3><img src="{% static 'interview_icon.png' %}" alt="interviews"/> Interviews </h3>
+                      </div>
+                      <div class="profile-card-content">
+                          <ul class="module interviews-module">
+                              <!--<li class="tooltips"> <h4> <a href="{% url 'homefood:about' %}"> Upcoming Interviews </a> <span>Tooltip</span> </h4> </li>-->
+                              <!--<li class="tooltips"> <h4> <a href=""> Completed Interviews </a> <span> <a href="{% url 'homefood:about' %}"> example </a> </span> </h4> </li>-->
+                              <li>
+                                  <div class="bullet-header">
+                                      <h4>
+                                        <!--<a class="disclosure-triangle" alt="collapse and expand icon" id="yui_3_2_0pr1_1_1533528220415871"></a>-->
+                                          <!--<i class="glyphicon glyphicon-collapse-down"></i>-->
+                                          <img src="{% static 'icon-arrow-down-gray2.svg' %}" class="collapse-triangle"/>
+                                          <a> Upcoming Interviews</a>
+                                      </h4>
+                                  </div>
+                                  <ul class="bullet-inner-list">
+                                      <li class="bullet-inner-bullet">
+                                          <h4>
+                                              <span class="value">
+                                                java
+                                              </span>
+                                              <a>
+                                                  temp1
+                                              </a>
+                                          </h4>
+                                      </li>
+                                      <li class="bullet-inner-bullet">
+                                          <h4>
+                                              <span class="value">
+                                                python
+                                              </span>
+                                              <a>
+                                                  temp1
+                                              </a>
+                                          </h4>
+                                      </li>
+                                  </ul>
+                              </li>
+                              <li>
+                                  <div class="bullet-header">
+                                      <h4>
+                                          <img src="{% static 'icon-arrow-down-gray2.svg' %}" class="collapse-triangle"/>
+                                          <a> All Interviews
+                                          </a>
+                                      </h4>
+                                  </div>
+                                  <ul class="bullet-inner-list">
+                                      <li class="bullet-inner-bullet">
+                                          <h4>
+                                              <span class="value">
+                                                java
+                                              </span>
+                                              <a>
+                                                  temp1
+                                              </a>
+                                          </h4>
+                                      </li>
+                                      <li class="bullet-inner-bullet">
+                                          <h4>
+                                              <span class="value">
+                                                python
+                                              </span>
+                                              <a>
+                                                  temp1
+                                              </a>
+                                          </h4>
+                                      </li>
+                                  </ul>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+             <!--Affix end-->
+          <div class="col-sm-9 profile-content-area">
+             <!--Content start-->
+             <div class="wrapper">
+                 {% block profile_content %}
+                 {% endblock %}
+             </div>
+             <!--Content end-->
+          </div>
+       </div>
+    </div>
+ </div>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="{% static 'popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="{% static 'interview.js' %}"></script>
+  </body>
+</html>

@@ -1,55 +1,36 @@
-{% extends "homefood/interview_base.html" %}
-{% block title %}
-    <title>Valley Coaching - Online Coaching for professionals - About</title>
-{% endblock %}
+{% extends "homefood/prof_base.html" %}
 {% block navbar %}
-              <nav>
-                <ul class="nav masthead-nav">
-                    <li><a href="{% url 'homefood:index' %}">Home</a></li>
-                    <li  class="active"><a href="{% url 'homefood:about' %}">About</a></li>
+    <nav class="navbar navbar-expand-md navbar-dark navbar-fixed-top bg-dark">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand"> Krutr </a>
+            </div>
+            <!-- Collection of nav links and other content for toggling -->
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Messages</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="glyphicon glyphicon-user"></span> {{ user.get_full_name }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="#">Log Out</a>
+                        </div>
+                  </li>
                 </ul>
-              </nav>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
+{% block profile_content %}
 
-{% block body %}
-          <div class="inner cover">
-<div class="about-section">
-		<div class="container">
-			<div class="site-title text-center">
-				<h1 class="cover-heading">About Us</h1>
-				<p class="lead"> A great career starts with an initiative to learn </p>
-			</div>
-			<div class="about-inner-section">
-			    <div class="col-md-6 about-right">
-				<img src="https://images.pexels.com/photos/7096/people-woman-coffee-meeting.jpg?w=940&h=650&auto=compress&cs=tinysrgb" alt=" ">
-			</div>
-				<div class="col-md-6 about-inner-column">
-                    <h3 class="sub-heading">Who?</h3>
-					<p class="paragraph-text">
-                            We are a small group of people with big idea of taking career coaching online.
-                    </p>
-
-                    <h3 class="sub-heading">What?</h3>
-                    <p class="paragraph-text">
-                        We create virtual classrooms with experienced industry professionals to coach
-                        everyone aspiring to move to the next level in their career.
-                    </p>
-
-                    <h3 class="sub-heading">How?</h3>
-                    <p class="paragraph-text">
-                        Depending on the class, it would be Google Hangouts, Skype or WebEx.
-                    </p>
-
-                    <h3 class="sub-heading">Where?</h3>
-                    <p class="paragraph-text">
-                        It's all online. So, half-full-half-empty way of saying it would be anywhere in general but nowhere in particular.
-                    </p>
-
-				</div>
-
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-	</div>
-          </div>
 {% endblock %}

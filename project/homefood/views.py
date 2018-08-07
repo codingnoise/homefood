@@ -9,7 +9,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import SchedulerForm
 
 from messages.messages import ScheduleMessage
-from manager import ScheduleManager, TaskManager
+from homefood.manager.schedule_manager import ScheduleManager
+from homefood.manager.task_manager import TaskManager
 
 PAGE_TEMPLATE = "%s:%s"
 INDEX_URL = PAGE_TEMPLATE % ("homefood", "index")
@@ -62,6 +63,7 @@ class ScheduleView(LoginRequiredMixin, ListView):
     def dispatch(self, *args, **kwargs):
         return super(ScheduleView, self).dispatch(*args, **kwargs)
 
+
 def get_availability(request):
     date = request.GET.get("date", None)
     scheduler = ScheduleManager()
@@ -100,14 +102,17 @@ class AppointmentView(View):
                 tm.run()
 
             if schedule_form.is_valid():
+                print "here"
                 schedule = schedule_form.cleaned_data
                 date = schedule.get("scheduleDate")
                 time = schedule.get("scheduleTime")
                 topic = schedule.get("scheduleTopic")
-                email = schedule.get("email")
+                interviewee_email = request.user.email
                 print "date=" + date + " time=" + time + " topic=" + topic
-                msg = ScheduleMessage(schedule_date=date, schedule_time=time, schedule_topic=topic, email=email)
+                msg = ScheduleMessage(schedule_date=date, schedule_time=time, schedule_topic=topic, interviewee_email=interviewee_email)
                 tm.schedule(msg)
+            else:
+                print "Schedule form not valid"
             return render(request, self.success_template_name)
         except Exception:
             return render(request, self.success_template_name)

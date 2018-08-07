@@ -1,14 +1,16 @@
 from django.views.generic import View, ListView
-from django.shortcuts import render
+from django.shortcuts import render, reverse, redirect
 from django.template import RequestContext
 from forms import CustomUserCreationForm, AuthForm
 from models import CustomUserManager, CustomUser
 from user_backend import CustomUserAuth
 from django.contrib.auth import login
 
+from common.util.log.Logger import Logger
+
 
 class RegisterView(View):
-    user_home_template = "users/home.html"
+    LOGGER = Logger().get_logger()
     signup_template = "users/register.html"
 
     def post(self, request):
@@ -16,61 +18,60 @@ class RegisterView(View):
             create_user_form = CustomUserCreationForm(request.POST)
             if create_user_form.is_valid():
                 user = create_user_form.cleaned_data
-                print "USER NAME= " + user.get("name") + " EMAIL=" + user.get("email") + " PASS=" + user.get("password1")
+                self.LOGGER.info("Registered user email=%s name=%s" %(user.get("email"), user.get("name")))
                 user_email = user.get("email")
                 user_password = user.get("password1")
                 user_name = user.get("name")
                 # TODO: Validate password using auth
                 # Create user
                 CustomUser.objects.create_user(user_email, user_name, user_password)
-                print "Success!"
+                self.LOGGER.info("Successful sign up for user email=%s name=%s" % (user_email, user_name))
             else:
-                user = create_user_form
-                print "invalid" + str(user.errors)
-            return render(request, self.user_home_template)
+                user = create_user_form.cleaned_data
+                self.LOGGER.error("Create user form is invalid for form=%s" % str(user))
+            return redirect(reverse("homefood:schedule"))
         except Exception as e:
-            print "Error " + str(e)
+            self.LOGGER.exception("Error during sign up for user name=%s" % str(e))
             return render(request, self.signup_template)
 
 
 class AuthView(View):
-    user_home_template = "homefood/schedule.html"
+    LOGGER = Logger().get_logger()
     signup_template = "users/register.html"
 
     def post(self, request):
         try:
-            print "Here!"
             auth_form = AuthForm(request.POST)
             if auth_form.is_valid():
                 user_data = auth_form.cleaned_data
-                print "data = " + str(user_data)
+                self.LOGGER.info("Authenticating user details=%s" % (str(user_data)))
                 user_email = user_data.get("email")
                 user_password = user_data.get("password")
-                print "pass: " + str(user_password)
                 auth = CustomUserAuth()
                 user = auth.authenticate(user_email, user_password)
-                print "auth=" + str(user.is_authenticated())
+                self.LOGGER.info("Is Authenticated=%s user details=%s" % (str(user.is_authenticated()), str(user_data)))
                 # TODO: Login with user name and details
                 if not user:
-                    print "failure!"
+                    self.LOGGER.error("User doesn't exist for user details=%s" % (str(user_data)))
                     return render(request, self.signup_template, RequestContext(request))
                 if user.is_active:
-                    print "active"
                     request.session.set_expiry(86400)
                     login(request, user)
-                print "Success!"
+                self.LOGGER.info("Successfully authenticated user=%s" % (str(user_email)))
             else:
-                print "invalid" + str(auth_form.errors)
-            return render(request, self.user_home_template)
+                self.LOGGER.error("AuthForm is not valid for details=%s" % (auth_form.cleaned_data))
+            return redirect(reverse("homefood:schedule"))
         except Exception as e:
-            print "Error " + str(e)
-            return render(request, self.signup_template)
+            self.LOGGER.exception("Error during authentication for user name=%s" % str(e))
+            return redirect(reverse("users:signup"))
+
 
 class SignupView(ListView):
     template_name = "users/register.html"
 
     def get_queryset(self):
         return ""
+
 
 class HomeView(ListView):
     template_name = "users/home.html"

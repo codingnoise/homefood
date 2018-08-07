@@ -6,7 +6,8 @@ from django.forms import Form, ModelForm
 
 import uuid
 
-from constants import Constants
+from constants import Constants, InterviewConstants
+from users.models import CustomUser
 
 # class Location(models.Model):
 #     latlong = models.CharField(max_length=200, primary_key=True)
@@ -76,12 +77,20 @@ from constants import Constants
 
 class Appointments(models.Model):
     interview_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    interview_date = models.DateTimeField(format(Constants.DATE_TIME_FORMAT))
-    interview_time = models.DateTimeField(Constants.TIME_FORMAT)
-    email = models.EmailField()
+    interview_date = models.CharField(max_length=30, default="")
+    interview_time = models.CharField(max_length=30, default="")
+    interview_topic = models.CharField(max_length=50, default=InterviewConstants.DEFAULT_INTERVIEW_TOPIC)
+    interview_duration = models.CharField(max_length=30, default=InterviewConstants.DEFAULT_INTERVIEW_DURATION_IN_MINS)
+    interviewee_email = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    interviewer_email = models.EmailField()
+    interview_status = models.CharField(max_length=30, default=InterviewConstants.INTERVIEW_STATUS_SCHEDULED)
+    interview_metadata = models.CharField(max_length=30000, default="")
+
+    def __str__(self):
+        return str(self.interview_id) + ", interview_date=" + str(self.interview_date) + ", interview_topic=" \
+               + str(self.interview_topic) + ", interviewee_email=" + str(self.interviewee_email)
 
 class SchedulerForm(Form):
     scheduleDate = forms.CharField()
     scheduleTime = forms.CharField()
     scheduleTopic = forms.CharField()
-    email = forms.EmailField()

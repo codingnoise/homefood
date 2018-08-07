@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.utils import timezone
 import urllib
+import uuid
 
 from django.db import models
 from django.core.mail import send_mail
@@ -54,7 +55,7 @@ class CustomUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-
+    interview_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email =  models.EmailField(unique=True)
     name = models.CharField(max_length=40, blank=True)
     date_joined = models.DateTimeField(auto_now_add=True)
@@ -65,6 +66,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = CustomUserManager()
+
+    def __str__(self):
+        return self.name + ", email=" + self.email
 
     class Meta:
         verbose_name = _('user')

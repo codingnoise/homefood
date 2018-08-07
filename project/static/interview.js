@@ -98,7 +98,6 @@ function validateText(id) {
 
 function validateEmail(id)
 {
-    alert("hi");
     var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
     if(!email_regex.test($("#"+id).val())) {
         var div = $("#"+id).closest("div");
@@ -120,28 +119,30 @@ function validateEmail(id)
 }
 
 
-$(document).ready(function() {
-    $("#scheduleMockInterview").click(function() {
-        if (!validateEmail("email")) {
-            return false;
-        }
-        /*
-        if (!validateText("contactEmail")) {
-            return false;
-        }
-        if (!validateText("contactMobile")) {
-            return false;
-        }
-        if (!validateText("contactAddress1")) {
-            return false;
-        }
-        if (!validateText("contactCity")) {
-            return false;
-        }*/
-        $("form#scheduler").submit();
-    }
-);
-});//var cardTab = '#card';
+//$(document).ready(function() {
+//    $("#scheduleMockInterview").click(function() {
+////        if (!validateEmail("email")) {
+////            return false;
+////        }
+//        /*
+//        if (!validateText("contactEmail")) {
+//            return false;
+//        }
+//        if (!validateText("contactMobile")) {
+//            return false;
+//        }
+//        if (!validateText("contactAddress1")) {
+//            return false;
+//        }
+//        if (!validateText("contactCity")) {
+//            return false;
+//        }*/
+//        $("form#scheduler").submit();
+//    }
+//);
+//});
+
+//var cardTab = '#card';
 //var paytmTab = "#paytm";
 //var instamojoTab = "#instamojo";
 //var paypalTab = "#paypal";
@@ -255,14 +256,14 @@ function validateEmail(id)
 
 }
 
-$("form#scheduler").submit(function (e) {
-   var validationFailed = false;
-   // do your validation here ...
-   if (!validateEmail("email")) {
-      e.preventDefault();
-      return false;
-   }
-});
+//$("form#scheduler").submit(function (e) {
+//   var validationFailed = false;
+//   // do your validation here ...
+//   if (!validateEmail("email")) {
+//      e.preventDefault();
+//      return false;
+//   }
+//});
 
 $("form#signupForm").submit(function (e) {
    var validationFailed = false;
@@ -334,9 +335,6 @@ $("#availability").on("click", "button[id^='timeButton']", function(){
 //        alert("Hello");
 //    });
 //});
-
-
-
 
 
 /*********

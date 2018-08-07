@@ -1,14 +1,5 @@
-{% extends "homefood/profile_base.html" %}
-{% block title %}
-    <title>Valley Coaching - Online Coaching for professionals - About</title>
-{% endblock %}
+{% extends "homefood/prof_base.html" %}
 {% block navbar %}
-              <!--<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">-->
-                <!--<ul class="nav">-->
-                    <!--<li><a href="{% url 'homefood:index' %}">Home</a></li>-->
-                    <!--<li  class="active"><a href="{% url 'homefood:about' %}">About</a></li>-->
-                <!--</ul>-->
-              <!--</nav>-->
     <nav class="navbar navbar-expand-md navbar-dark navbar-fixed-top bg-dark">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -19,111 +10,78 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="#" class="navbar-brand">Brand</a>
+                <a href="#" class="navbar-brand"> Krutr </a>
             </div>
             <!-- Collection of nav links and other content for toggling -->
             <div id="navbarCollapse" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="#">Home</a></li>
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">Messages</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{ user.get_full_name }}</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="glyphicon glyphicon-user"></span> {{ user.get_full_name }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="#">Log Out</a>
+                        </div>
+                  </li>
                 </ul>
             </div>
         </div>
     </nav>
 {% endblock %}
+{% block profile_content %}
 
-{% block body %}
 
-            <div>
-                <p>
-                    <h3 class="lead">
-                        You can schedule a mock interview in just three steps, {{ user.get_full_name }}.
-                    </h3>
-                </p>
+            <div class="profile-card-view">
+                <div class="profile-card-header">
+                    <h3> Schedule a Mock </h3>
+                </div>
+
+                <form id="scheduler" action="{% url 'homefood:appointment' %}" method="post">
+                    {% csrf_token %}
+                    <div class="row profile-card-steps">
+                        <div class="col-sm-4 profile-card-step">
+                            <p> Select a date </p>
+                            <input id="scheduleDate" name="scheduleDate" type="hidden"/>
+                            <div id="calendar">
+                            </div>
+                        </div>
+                        <div class="col-sm-4 profile-card-step">
+                            <p> Choose an available slot </p>
+                            <input id="scheduleTime" name="scheduleTime" type="hidden"/>
+                            <div id="availability">
+                                <p class="unavailable-text" id="unavailableText">No available slots for the date selected</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 profile-card-step">
+                            <p> Select interview topic </p>
+                            <select class="form-control form-control-sm" id="scheduleTopicId" name="scheduleTopic">
+                                <option value="java">Java</option>
+                                <option value="python">Python</option>
+                                <option value="algorithms">Algorithms</option>
+                                <option value="datastructures">Datastructures</option>
+                                <option value="design">Design</option>
+                                <option value="testing">Testing</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row schedule-button-wrapper">
+                        <button class="btn btn-lg btn-default" type="submit" id="scheduleMockInterview"> Schedule Mock Interview</button>
+                    </div>
+                </form>
             </div>
-            <form id="scheduler" action="{% url 'homefood:appointment' %}" method="post">
-                {% csrf_token %}
-                <div class="row">
-                    <div class="col-sm-4">
-                        <h4 class="lead">1. Select a date</h4>
-                        <input id="scheduleDate" name="scheduleDate" type="hidden"/>
-                        <div id="calendar">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <h4 class="lead">2. Choose an available slot</h4>
-                        <input id="scheduleTime" name="scheduleTime" type="hidden"/>
-                        <div id="availability">
-                            <h4 class="lead grey-text" id="unavailableText">Sorry there are no available slots for the date selected </h4>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <!--<h4 class="cover-heading">3. Provide an email</h4>-->
-                          <!--<div class="form-group">-->
-                            <!--<input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email"/>-->
-                          <!--</div>-->
-                        <h4 class="lead">3. Select interview topic</h4>
-                        <select class="form-control-custom form-control-sm" id="scheduleTopicId" name="scheduleTopic">
-                            <option value="java">Java</option>
-                            <option value="python">Python</option>
-                            <option value="algorithms">Algorithms</option>
-                            <option value="datastructures">Datastructures</option>
-                            <option value="design">Design</option>
-                            <option value="testing">Testing</option>
-                        </select>
+
+            <div class="profile-card-view">
+                <div class="profile-card-header">
+                    <h3> Progress </h3>
+                </div>
+                <div class="row profile-card-steps">
+                    <div class="goal-view">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                    </div>
-                    <!--<div class="col-sm-4">-->
-                    <!--<h4 class="lead">4. Provide an email</h4>-->
-                        <!--<div class="email form-group">-->
-                            <!--<input type="email" class="form-control-custom" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email"/>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="col-sm-4">-->
-                    </div>
-                </div>
-                <div class="row">
-                    <p class="lead">
-                        <a class="btn btn-lg btn-default" type="submit" id="scheduleMockInterview"> Schedule Mock Interview</a>
-                    </p>
-                </div>
-            </form>
-			<!--<div class="about-inner-section">-->
+            </div>
 
-				<!--&lt;!&ndash;<div class="col-md-6 about-inner-column">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<h3 class="sub-heading">Who?</h3>&ndash;&gt;-->
-					<!--&lt;!&ndash;<p class="paragraph-text">&ndash;&gt;-->
-                            <!--&lt;!&ndash;We are a small group of people with big idea of taking career coaching online.&ndash;&gt;-->
-                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
-
-                    <!--&lt;!&ndash;<h3 class="sub-heading">What?</h3>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<p class="paragraph-text">&ndash;&gt;-->
-                        <!--&lt;!&ndash;We create virtual classrooms with experienced industry professionals to coach&ndash;&gt;-->
-                        <!--&lt;!&ndash;everyone aspiring to move to the next level in their career.&ndash;&gt;-->
-                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
-
-                    <!--&lt;!&ndash;<h3 class="sub-heading">How?</h3>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<p class="paragraph-text">&ndash;&gt;-->
-                        <!--&lt;!&ndash;Depending on the class, it would be Google Hangouts, Skype or WebEx.&ndash;&gt;-->
-                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
-
-                    <!--&lt;!&ndash;<h3 class="sub-heading">Where?</h3>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<p class="paragraph-text">&ndash;&gt;-->
-                        <!--&lt;!&ndash;It's all online. So, half-full-half-empty way of saying it would be anywhere in general but nowhere in particular.&ndash;&gt;-->
-                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
-
-				<!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-				<!--&lt;!&ndash;<div class="clearfix"> </div>&ndash;&gt;-->
-			<!--</div>-->
-		<!--</div>-->
-	<!--</div>-->
-          <!--</div>-->
 {% endblock %}
