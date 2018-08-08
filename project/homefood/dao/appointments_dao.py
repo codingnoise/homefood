@@ -69,8 +69,14 @@ class AppointmentsDao(object):
     @staticmethod
     def get_scheduled_interviews(user_email, status=InterviewConstants.INTERVIEW_STATUS_SCHEDULED):
         interviews = Appointments.objects.filter(interview_status=status, interviewee_email__email=user_email)
+        response = [{
+                        "interview_date": interview.interview_date,
+                        "interview_topic": interview.interview_topic
+                    }
+                    for interview in interviews]
         print "interviews: "
         print str(interviews)
+        return response
 
     #TODO: Complete
     @staticmethod

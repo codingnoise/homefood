@@ -296,7 +296,6 @@ $(document).ready(function() {
                 if (availability_length == 0) {
                     $("#availability").append("<h4 class=\"lead\"> Sorry there are no available slots for the date selected </h4>");
                 } else {
-                    $("#availability");
                     for (var i = 0; i < availability_length; i++) {
                         //<button type="button" class="btn btn-default">
                         $("#availability").append("<button id=\"timeButton" + i + "\" type=\"button\" class=\"btn btn-time\""
@@ -316,6 +315,47 @@ $(document).ready(function() {
         });
 
     });
+});
+
+
+
+$(document).ready(function() {
+    // Call to get availability
+    $.ajax({
+        url: '/homefood/appointment/',
+        data: 'filter=scheduled',
+        success: function (data) {
+            var interviews = data.interviews;
+            var num_interviews = interviews.length;
+            if (num_interviews == 0) {
+                $("#bullet-inner-list-scheduled").append("<h4 class=\"lead\"> No interviews scheduled </h4>");
+            } else {
+
+                for (var i = 0; i < num_interviews; i++) {
+                    //$("#bullet-inner-list-scheduled").append(interviews[i].interview_date);
+                    $("#bullet-inner-list-scheduled").append("<li class=\"bullet-inner-bullet\"> " +
+                                            "<h4>" +
+                                                "<span class=\"value\">" +
+                                                    interviews[i].interview_topic +
+                                                "</span>" +
+                                                "<a>" +
+                                                    interviews[i].interview_date +
+                                                "</a></h4></li>");
+                }
+            }
+        },
+                // handle a non-successful response
+        error : function(xhr, errmsg, err) {
+            alert("failure" + ": " + xhr.status + ": " + xhr.responseText);
+            console.log(errmsg);
+        }
+    });
+
+});
+
+$(".collapse-triangle").on('click', function(){
+    $(this).toggleClass('open');
+    $(this).parent().parent().next().toggle();
 });
 
 // on clicking on any button with id starting with timebutton - it should set scheduleTime value and

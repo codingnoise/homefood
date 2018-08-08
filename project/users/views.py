@@ -55,7 +55,7 @@ class AuthView(View):
                     self.LOGGER.error("User doesn't exist for user details=%s" % (str(user_data)))
                     return render(request, self.signup_template, RequestContext(request))
                 if user.is_active:
-                    request.session.set_expiry(86400)
+                    request.session.set_expiry(2592000)
                     login(request, user)
                 self.LOGGER.info("Successfully authenticated user=%s" % (str(user_email)))
             else:

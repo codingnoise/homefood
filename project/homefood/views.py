@@ -1,3 +1,4 @@
+from django.core import serializers
 from django.shortcuts import render
 from django.http import JsonResponse, Http404
 from django.core.urlresolvers import reverse_lazy
@@ -9,11 +10,15 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import SchedulerForm
 
 from messages.messages import ScheduleMessage
+from homefood.constants import InterviewConstants
+from homefood.dao.appointments_dao import AppointmentsDao
+from common.util.log.Logger import Logger
 from homefood.manager.schedule_manager import ScheduleManager
 from homefood.manager.task_manager import TaskManager
 
 PAGE_TEMPLATE = "%s:%s"
 INDEX_URL = PAGE_TEMPLATE % ("homefood", "index")
+LOG = Logger().get_logger()
 
 
 class IndexView(ListView):
@@ -117,7 +122,21 @@ class AppointmentView(View):
         except Exception:
             return render(request, self.success_template_name)
 
-
+    def get(self, request):
+        upcoming_interviews = {"interviews": []}
+        try:
+            if request.user.is_active:
+                user = request.user
+                filter = request.GET.get('filter', None)
+                if not filter:
+                    # get all interviews
+                    upcoming_interviews["interviews"] = ["all_interviews"]
+                elif filter == InterviewConstants.INTERVIEW_STATUS_SCHEDULED:
+                    upcoming_interviews["interviews"] = AppointmentsDao.get_scheduled_interviews(user)
+            print upcoming_interviews
+            return JsonResponse(upcoming_interviews)
+        except Exception:
+            LOG.exception("Error occurred duing GET /appointments for user=%s" % request.user)
 
 # def handler404(request):
 #     return render(request, '404.html', status=404)
